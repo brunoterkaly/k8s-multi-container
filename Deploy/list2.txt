@@ -1,0 +1,84 @@
+Name:		mysql
+Namespace:	default
+Node:		k8s-agent-caf3cef9-2/10.240.0.6
+Start Time:	Mon, 06 Feb 2017 05:47:34 +0000
+Labels:		app=demo
+		name=mysql
+Status:		Running
+IP:		10.244.3.11
+Controllers:	<none>
+Containers:
+  mysql:
+    Container ID:	docker://6c987b70376a80630b9df779671faf369980db3062b3e05fe0c86bbb752bb938
+    Image:		mysql:latest
+    Image ID:		docker-pullable://mysql@sha256:5e2ec5964847dd78c83410f228325a462a3bfd796b6133b2bdd590b71721fea6
+    Port:		3306/TCP
+    State:		Running
+      Started:		Mon, 06 Feb 2017 05:47:36 +0000
+    Ready:		True
+    Restart Count:	0
+    Volume Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-711r3 (ro)
+    Environment Variables:
+      MYSQL_ROOT_PASSWORD:	password
+Conditions:
+  Type		Status
+  Initialized 	True 
+  Ready 	True 
+  PodScheduled 	True 
+Volumes:
+  default-token-711r3:
+    Type:	Secret (a volume populated by a Secret)
+    SecretName:	default-token-711r3
+QoS Class:	BestEffort
+Tolerations:	<none>
+No events.
+
+
+Name:		web1
+Namespace:	default
+Node:		k8s-agent-caf3cef9-0/10.240.0.4
+Start Time:	Mon, 06 Feb 2017 05:47:34 +0000
+Labels:		app=demo
+		name=web
+Status:		Running
+IP:		10.244.0.9
+Controllers:	<none>
+Containers:
+  redis:
+    Container ID:	docker://827a8cf2dce19843d57942a5f6864265769ccd442e4db6364c1bdd70d9aeb642
+    Image:		redis
+    Image ID:		docker-pullable://redis@sha256:afa4b429ef3ee08c8b198e50d684c5da0ffa43ae58631f61b08829bd6df3c500
+    Port:		6379/TCP
+    State:		Running
+      Started:		Mon, 06 Feb 2017 05:47:36 +0000
+    Ready:		True
+    Restart Count:	0
+    Volume Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-711r3 (ro)
+    Environment Variables:	<none>
+  python:
+    Container ID:	docker://bc2aad9da14f1e59254a7c18c064e054ce93bd7c672a9e19ffac7bf32cb1f562
+    Image:		brunoterkaly/py-red
+    Image ID:		docker-pullable://brunoterkaly/py-red@sha256:90ddb28d1032cc5817c06be60e3fc71c8854963eaf8c880556083afd9e26257d
+    Port:		5000/TCP
+    State:		Running
+      Started:		Mon, 06 Feb 2017 05:48:14 +0000
+    Ready:		True
+    Restart Count:	0
+    Volume Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-711r3 (ro)
+    Environment Variables:
+      REDIS_HOST:	localhost
+Conditions:
+  Type		Status
+  Initialized 	True 
+  Ready 	True 
+  PodScheduled 	True 
+Volumes:
+  default-token-711r3:
+    Type:	Secret (a volume populated by a Secret)
+    SecretName:	default-token-711r3
+QoS Class:	BestEffort
+Tolerations:	<none>
+No events.

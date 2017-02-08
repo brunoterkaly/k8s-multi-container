@@ -1,0 +1,17 @@
+# k get pods
+#   NAME      READY     STATUS    RESTARTS   AGE
+#   mysql     1/1       Running   0          2h
+#   web1      2/2       Running   2          2h
+# kubectl port-forward web1 5000:5000 &
+# curl localhost:5000/init
+#   Response -> DB Init done
+
+#root:/data/Kubernetes-multi-container-pod/Build#
+
+kubectl port-forward web1 5000:5000 &
+curl localhost:5000/init
+curl -i -H "Content-Type: application/json" -X POST -d '{"uid": "1", "coursenumber" : "401" , "coursetitle" : "K8s", "notes" : "An orchestrator"}' http://localhost:5000/courses/add
+curl localhost:5000/courses/1
+
+
+

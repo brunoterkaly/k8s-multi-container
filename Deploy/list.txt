@@ -1,0 +1,32 @@
+========================================
+Name:			k8s-agent-caf3cef9-0
+  Namespace			Name				CPU Requests	CPU Limits	Memory Requests	Memory Limits
+  ---------			----				------------	----------	---------------	-------------
+  default			web1				0 (0%)		0 (0%)		0 (0%)		0 (0%)
+Name:			k8s-agent-caf3cef9-1
+Non-terminated Pods:		(5 in total)
+  Namespace			Name						CPU Requests	CPU Limits	Memory Requests	Memory Limits
+  ---------			----						------------	----------	---------------	-------------
+  kube-system			heapster-v1.2.0-194960081-rz0cl			130m (6%)	130m (6%)	230Mi (3%)	230Mi (3%)
+  kube-system			kube-dns-v19-4mpr6				110m (5%)	0 (0%)		120Mi (1%)	220Mi (3%)
+  kube-system			kube-dns-v19-hw83s				110m (5%)	0 (0%)		120Mi (1%)	220Mi (3%)
+  kube-system			kube-proxy-w98ms				100m (5%)	0 (0%)		0 (0%)		0 (0%)
+  kube-system			kubernetes-dashboard-1872455951-15v34		0 (0%)		0 (0%)		0 (0%)		0 (0%)
+
+========================================
+Name:			k8s-agent-caf3cef9-2
+Non-terminated Pods:		(2 in total)
+  Namespace			Name				CPU Requests	CPU Limits	Memory Requests	Memory Limits
+  ---------			----				------------	----------	---------------	-------------
+  default			mysql				0 (0%)		0 (0%)		0 (0%)		0 (0%)
+  kube-system			kube-proxy-t25gc		100m (5%)	0 (0%)		0 (0%)		0 (0%)
+========================================
+Name:			k8s-master-caf3cef9-0
+Non-terminated Pods:		(5 in total)
+  Namespace			Name							CPU Requests	CPU Limits	Memory Requests	Memory Limits
+  ---------			----							------------	----------	---------------	-------------
+  kube-system			kube-addon-manager-k8s-master-caf3cef9-0		5m (0%)		0 (0%)		50Mi (0%)	0 (0%)
+  kube-system			kube-apiserver-k8s-master-caf3cef9-0			0 (0%)		0 (0%)		0 (0%)		0 (0%)
+  kube-system			kube-controller-manager-k8s-master-caf3cef9-0		0 (0%)		0 (0%)		0 (0%)		0 (0%)
+  kube-system			kube-proxy-1rv6r					100m (5%)	0 (0%)		0 (0%)		0 (0%)
+  kube-system			kube-scheduler-k8s-master-caf3cef9-0			0 (0%)		0 (0%)		0 (0%)		0 (0%)

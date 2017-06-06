@@ -1,4 +1,4 @@
-curl http://localhost:5000/courses/1
-curl http://localhost:5000/courses/2
-curl http://localhost:5000/courses/3
+curl http://122.122.122.122/courses/1
+curl http://122.122.122.122/courses/2
+curl http://122.122.122.122/courses/3
 

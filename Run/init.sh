@@ -1,2 +1,2 @@
-curl localhost:5000/init
+curl 122.122.122.122/init
 

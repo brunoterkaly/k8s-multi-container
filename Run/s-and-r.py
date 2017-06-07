@@ -57,7 +57,7 @@ def extract_proxies(fh):
 def do_fix(fn, newip):
    iplist = extract_proxies(open(fn))
    print(iplist)
-   print(iplist[1][0])
+   #print(iplist[1][0])
    for i in range(len(iplist)):
        with open(fn) as f:
             s = f.read()
@@ -67,7 +67,9 @@ def do_fix(fn, newip):
 
 # Get new IP
 newip = getExternalIp()
+do_fix("init.sh", newip)
 do_fix("add.sh", newip)
+do_fix("query.sh", newip)
 
 
 

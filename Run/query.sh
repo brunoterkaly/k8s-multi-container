@@ -1,4 +1,4 @@
-curl http://52.176.42.236/courses/1
-curl http://52.176.42.236/courses/2
-curl http://52.176.42.236/courses/3
+curl http://13.93.160.149/courses/1
+curl http://13.93.160.149/courses/2
+curl http://13.93.160.149/courses/3
 

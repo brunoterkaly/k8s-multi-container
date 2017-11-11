@@ -1,3 +1,4 @@
+
 import subprocess
 from shutil import copyfile
 import re
@@ -12,8 +13,8 @@ def extract_line(s):
   sep = re.compile('[\s]+')
   #addToTopFile(s)
   s = sep.split(s)
-  del s[-1]
-  return s
+  #del s[-1]
+  return s[3]
 
 
 
@@ -34,10 +35,9 @@ def getExternalIp():
            process = subprocess.Popen(command, stdout=subprocess.PIPE)
            s = skipLinesUntilToken(process,"web1")
            #print(s)
-           arr = extract_line(s)
-           new_ip = arr[2]
+           result = extract_line(s)
            process.terminate()
-           return new_ip
+           return result
     except KeyboardInterrupt:
        pass
     return
@@ -56,7 +56,7 @@ def extract_proxies(fh):
 
 def do_fix(fn, newip):
    iplist = extract_proxies(open(fn))
-   print(iplist)
+   #print(iplist)
    #print(iplist[1][0])
    for i in range(len(iplist)):
        with open(fn) as f:
@@ -67,9 +67,9 @@ def do_fix(fn, newip):
 
 # Get new IP
 newip = getExternalIp()
+print("public ip address for web service = ",newip)
 do_fix("init.sh", newip)
 do_fix("add.sh", newip)
 do_fix("query.sh", newip)
-
 
 

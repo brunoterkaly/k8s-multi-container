@@ -14,11 +14,11 @@ import json
 app = Flask(__name__)
 startTime = datetime.now()
 R_SERVER = redis.Redis(host=os.environ.get('REDIS_HOST', 'redis'), port=6379)
-db = MySQLdb.connect("mysql","root","password")
-cursor = db.cursor()
 
 @app.route('/init')
 def init():
+    db = MySQLdb.connect("mysql","root","password")
+    cursor = db.cursor()
     cursor.execute("DROP DATABASE IF EXISTS AZUREDB")
     cursor.execute("CREATE DATABASE AZUREDB")
     cursor.execute("USE AZUREDB")
@@ -32,6 +32,9 @@ def init():
 @app.route("/courses/add", methods=['POST'])
 def add_courses():
 
+    db = MySQLdb.connect("mysql","root","password")
+    cursor = db.cursor()
+    cursor.execute("USE AZUREDB")
     req_json = request.get_json()   
     cursor.execute("INSERT INTO courses (id, coursenumber, coursetitle, notes) VALUES (%s,%s,%s,%s)", 
           (req_json['uid'], req_json['coursenumber'], req_json['coursetitle'], req_json['notes']))
@@ -47,6 +50,9 @@ def get_courses(uid):
     if (R_SERVER.get(key)):
         return R_SERVER.get(key) + "(from cache)" 
     else:
+        db = MySQLdb.connect("mysql","root","password")
+        cursor = db.cursor()
+        cursor.execute("USE AZUREDB")
         cursor.execute("select coursenumber, coursetitle, notes from courses where ID=" + str(uid))
         data = cursor.fetchall()
         if data:

@@ -1,24 +1,32 @@
-apiVersion: "v1"
+--- 
+apiVersion: v1
 kind: Pod
-metadata:
-  name: web1
-  labels:
-    name: web
+metadata: 
+  labels: 
     app: demo
-spec:
-  containers:
-    - name: redis
-      image: redis
-      ports:
+    name: web
+  name: web1
+spec: 
+  containers: 
+    - image: redis
+      name: redis
+      ports: 
         - containerPort: 6379
           name: redis
           protocol: TCP
-    - name: python
-      image: brunoterkaly/py-red
-      env:       
-        - name: "REDIS_HOST"
-          value: "localhost"
-      ports:
+    - image: brunoterkaly/py-red
+      name: python
+      env: 
+        - name: REDIS_HOST
+          value: localhost
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 5000
+        initialDelaySeconds: 30
+        timeoutSeconds: 3
+      ports: 
         - containerPort: 5000
           name: http
-          protocol: TCP                    
+          protocol: TCP
+

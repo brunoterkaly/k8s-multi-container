@@ -1,0 +1,307 @@
+kubectl logs web1 python 
+============================================
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 690-727-122
+kubectl logs mysql mysql
+============================================
+Initializing database
+2017-11-13T16:28:50.944135Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2017-11-13T16:28:51.861600Z 0 [Warning] InnoDB: New log files created, LSN=45790
+2017-11-13T16:28:52.102460Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
+2017-11-13T16:28:52.271867Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: bc46b580-c88f-11e7-b35f-0a580af4020d.
+2017-11-13T16:28:52.300712Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+2017-11-13T16:28:52.301135Z 1 [Warning] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2017-11-13T16:29:02.006391Z 1 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:02.006478Z 1 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:02.006504Z 1 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:02.006542Z 1 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:02.006568Z 1 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:02.006587Z 1 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:02.006638Z 1 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:02.006661Z 1 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+Database initialized
+Initializing certificates
+Generating a 2048 bit RSA private key
+.........................................................+++
+..+++
+unable to write 'random state'
+writing new private key to 'ca-key.pem'
+-----
+Generating a 2048 bit RSA private key
+..............................................................................+++
+........................+++
+unable to write 'random state'
+writing new private key to 'server-key.pem'
+-----
+Generating a 2048 bit RSA private key
+..............................................+++
+...+++
+unable to write 'random state'
+writing new private key to 'client-key.pem'
+-----
+Certificates initialized
+MySQL init process in progress...
+2017-11-13T16:29:07.945314Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2017-11-13T16:29:07.946587Z 0 [Note] mysqld (mysqld 5.7.20) starting as process 88 ...
+2017-11-13T16:29:07.949452Z 0 [Note] InnoDB: PUNCH HOLE support available
+2017-11-13T16:29:07.949483Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2017-11-13T16:29:07.949485Z 0 [Note] InnoDB: Uses event mutexes
+2017-11-13T16:29:07.949488Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+2017-11-13T16:29:07.949490Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2017-11-13T16:29:07.949492Z 0 [Note] InnoDB: Using Linux native AIO
+2017-11-13T16:29:07.949693Z 0 [Note] InnoDB: Number of pools: 1
+2017-11-13T16:29:07.949784Z 0 [Note] InnoDB: Using CPU crc32 instructions
+2017-11-13T16:29:07.951679Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2017-11-13T16:29:07.959041Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2017-11-13T16:29:07.960741Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+2017-11-13T16:29:07.972414Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2017-11-13T16:29:08.007231Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2017-11-13T16:29:08.007292Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2017-11-13T16:29:08.097036Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+2017-11-13T16:29:08.098151Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2017-11-13T16:29:08.098163Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2017-11-13T16:29:08.098813Z 0 [Note] InnoDB: Waiting for purge to start
+2017-11-13T16:29:08.148962Z 0 [Note] InnoDB: 5.7.20 started; log sequence number 2566017
+2017-11-13T16:29:08.149152Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+2017-11-13T16:29:08.149229Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2017-11-13T16:29:08.150005Z 0 [Note] InnoDB: Buffer pool(s) load completed at 171113 16:29:08
+2017-11-13T16:29:08.152780Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+2017-11-13T16:29:08.153020Z 0 [Warning] CA certificate ca.pem is self signed.
+2017-11-13T16:29:08.174676Z 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:08.174736Z 0 [Warning] 'user' entry 'mysql.session@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:08.174761Z 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:08.174786Z 0 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:08.174801Z 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:08.174818Z 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:08.175860Z 0 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:08.175916Z 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:08.180920Z 0 [Note] Event Scheduler: Loaded 0 events
+2017-11-13T16:29:08.181111Z 0 [Note] mysqld: ready for connections.
+Version: '5.7.20'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server (GPL)
+2017-11-13T16:29:08.181135Z 0 [Note] Executing 'SELECT * FROM INFORMATION_SCHEMA.TABLES;' to get a list of tables using the deprecated partition engine. You may use the startup option '--disable-partition-engine-check' to skip this check. 
+2017-11-13T16:29:08.181149Z 0 [Note] Beginning of list of non-natively partitioned tables
+2017-11-13T16:29:08.189691Z 0 [Note] End of list of non-natively partitioned tables
+Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+2017-11-13T16:29:15.524527Z 5 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:15.524550Z 5 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:15.524560Z 5 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:15.524563Z 5 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:15.524569Z 5 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:15.524600Z 5 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:15.524606Z 5 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+
+2017-11-13T16:29:15.525513Z 0 [Note] Giving 0 client threads a chance to die gracefully
+2017-11-13T16:29:15.525525Z 0 [Note] Shutting down slave threads
+2017-11-13T16:29:15.525527Z 0 [Note] Forcefully disconnecting 0 remaining clients
+2017-11-13T16:29:15.525531Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+2017-11-13T16:29:15.525555Z 0 [Note] Binlog end
+2017-11-13T16:29:15.526047Z 0 [Note] Shutting down plugin 'ngram'
+2017-11-13T16:29:15.526051Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+2017-11-13T16:29:15.526054Z 0 [Note] Shutting down plugin 'partition'
+2017-11-13T16:29:15.526056Z 0 [Note] Shutting down plugin 'ARCHIVE'
+2017-11-13T16:29:15.526057Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2017-11-13T16:29:15.526058Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2017-11-13T16:29:15.526060Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2017-11-13T16:29:15.526061Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2017-11-13T16:29:15.526062Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2017-11-13T16:29:15.526063Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2017-11-13T16:29:15.526064Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2017-11-13T16:29:15.526065Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2017-11-13T16:29:15.526067Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2017-11-13T16:29:15.526068Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2017-11-13T16:29:15.526069Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2017-11-13T16:29:15.526070Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2017-11-13T16:29:15.526071Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2017-11-13T16:29:15.526072Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2017-11-13T16:29:15.526073Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2017-11-13T16:29:15.526075Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2017-11-13T16:29:15.526076Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2017-11-13T16:29:15.526077Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2017-11-13T16:29:15.526078Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2017-11-13T16:29:15.526079Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2017-11-13T16:29:15.526080Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2017-11-13T16:29:15.526081Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2017-11-13T16:29:15.526082Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2017-11-13T16:29:15.526083Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2017-11-13T16:29:15.526085Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2017-11-13T16:29:15.526086Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2017-11-13T16:29:15.526087Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+2017-11-13T16:29:15.526088Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2017-11-13T16:29:15.526089Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2017-11-13T16:29:15.526090Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+2017-11-13T16:29:15.526091Z 0 [Note] Shutting down plugin 'InnoDB'
+2017-11-13T16:29:15.526161Z 0 [Note] InnoDB: FTS optimize thread exiting.
+2017-11-13T16:29:15.526248Z 0 [Note] InnoDB: Starting shutdown...
+2017-11-13T16:29:15.626484Z 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+2017-11-13T16:29:15.626781Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 171113 16:29:15
+2017-11-13T16:29:17.574549Z 0 [Note] InnoDB: Shutdown completed; log sequence number 12170319
+2017-11-13T16:29:17.576290Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2017-11-13T16:29:17.576305Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2017-11-13T16:29:17.576308Z 0 [Note] Shutting down plugin 'MyISAM'
+2017-11-13T16:29:17.576315Z 0 [Note] Shutting down plugin 'CSV'
+2017-11-13T16:29:17.576319Z 0 [Note] Shutting down plugin 'MEMORY'
+2017-11-13T16:29:17.576321Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2017-11-13T16:29:17.576343Z 0 [Note] Shutting down plugin 'sha256_password'
+2017-11-13T16:29:17.576350Z 0 [Note] Shutting down plugin 'mysql_native_password'
+2017-11-13T16:29:17.576475Z 0 [Note] Shutting down plugin 'binlog'
+2017-11-13T16:29:17.576898Z 0 [Note] mysqld: Shutdown complete
+
+
+MySQL init process done. Ready for start up.
+
+2017-11-13T16:29:17.777188Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2017-11-13T16:29:17.778550Z 0 [Note] mysqld (mysqld 5.7.20) starting as process 1 ...
+2017-11-13T16:29:17.781699Z 0 [Note] InnoDB: PUNCH HOLE support available
+2017-11-13T16:29:17.781769Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2017-11-13T16:29:17.781785Z 0 [Note] InnoDB: Uses event mutexes
+2017-11-13T16:29:17.781798Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+2017-11-13T16:29:17.781809Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2017-11-13T16:29:17.781820Z 0 [Note] InnoDB: Using Linux native AIO
+2017-11-13T16:29:17.782042Z 0 [Note] InnoDB: Number of pools: 1
+2017-11-13T16:29:17.782172Z 0 [Note] InnoDB: Using CPU crc32 instructions
+2017-11-13T16:29:17.783674Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2017-11-13T16:29:17.790932Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2017-11-13T16:29:17.792330Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+2017-11-13T16:29:17.804181Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2017-11-13T16:29:17.836372Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2017-11-13T16:29:17.836496Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2017-11-13T16:29:17.893049Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+2017-11-13T16:29:17.894223Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2017-11-13T16:29:17.894265Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2017-11-13T16:29:17.894950Z 0 [Note] InnoDB: 5.7.20 started; log sequence number 12170319
+2017-11-13T16:29:17.895285Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2017-11-13T16:29:17.898877Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+2017-11-13T16:29:17.899151Z 0 [Warning] CA certificate ca.pem is self signed.
+2017-11-13T16:29:17.900740Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2017-11-13T16:29:17.900825Z 0 [Note] IPv6 is available.
+2017-11-13T16:29:17.900845Z 0 [Note]   - '::' resolves to '::';
+2017-11-13T16:29:17.900870Z 0 [Note] Server socket created on IP: '::'.
+2017-11-13T16:29:17.901058Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+2017-11-13T16:29:17.903538Z 0 [Note] InnoDB: Buffer pool(s) load completed at 171113 16:29:17
+2017-11-13T16:29:17.924986Z 0 [Warning] 'user' entry 'root@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:17.925096Z 0 [Warning] 'user' entry 'mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:17.925128Z 0 [Warning] 'db' entry 'performance_schema mysql.session@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:17.925144Z 0 [Warning] 'db' entry 'sys mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:17.925162Z 0 [Warning] 'proxies_priv' entry '@ root@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:17.927155Z 0 [Warning] 'tables_priv' entry 'user mysql.session@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:17.927197Z 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode.
+2017-11-13T16:29:17.931391Z 0 [Note] Event Scheduler: Loaded 0 events
+2017-11-13T16:29:17.931642Z 0 [Note] mysqld: ready for connections.
+Version: '5.7.20'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+2017-11-13T16:29:17.931678Z 0 [Note] Executing 'SELECT * FROM INFORMATION_SCHEMA.TABLES;' to get a list of tables using the deprecated partition engine. You may use the startup option '--disable-partition-engine-check' to skip this check. 
+2017-11-13T16:29:17.931692Z 0 [Note] Beginning of list of non-natively partitioned tables
+2017-11-13T16:29:17.939853Z 0 [Note] End of list of non-natively partitioned tables
+kubectl describe pod web1
+============================================
+Name:         web1
+Namespace:    default
+Node:         k8s-agent-97406cf-0/10.240.0.6
+Start Time:   Mon, 13 Nov 2017 16:28:46 +0000
+Labels:       app=demo
+              name=web
+Annotations:  <none>
+Status:       Running
+IP:           10.244.3.55
+Containers:
+  redis:
+    Container ID:   docker://d5cbd098a471312652e64c4b3be5225bf9b402204866de4f78418353e529e24b
+    Image:          redis
+    Image ID:       docker-pullable://redis@sha256:cd277716dbff2c0211c8366687d275d2b53112fecbf9d6c86e9853edb0900956
+    Port:           6379/TCP
+    State:          Running
+      Started:      Mon, 13 Nov 2017 16:28:49 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-6l67c (ro)
+  python:
+    Container ID:   docker://9656ffcdea130154259e9c027088a5458e29efa9113f4c2019874a91bdceca31
+    Image:          brunoterkaly/py-red
+    Image ID:       docker-pullable://brunoterkaly/py-red@sha256:719afacc6022f97ce3e524e05ca3f1f35115b244face76b0b5826160a50fd47d
+    Port:           5000/TCP
+    State:          Running
+      Started:      Mon, 13 Nov 2017 16:28:50 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      REDIS_HOST:  localhost
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-6l67c (ro)
+Conditions:
+  Type           Status
+  Initialized    True 
+  Ready          True 
+  PodScheduled   True 
+Volumes:
+  default-token-6l67c:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-6l67c
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     <none>
+Events:
+  Type    Reason                 Age   From                          Message
+  ----    ------                 ----  ----                          -------
+  Normal  Scheduled              1m    default-scheduler             Successfully assigned web1 to k8s-agent-97406cf-0
+  Normal  SuccessfulMountVolume  1m    kubelet, k8s-agent-97406cf-0  MountVolume.SetUp succeeded for volume "default-token-6l67c"
+  Normal  Pulling                1m    kubelet, k8s-agent-97406cf-0  pulling image "redis"
+  Normal  Pulled                 1m    kubelet, k8s-agent-97406cf-0  Successfully pulled image "redis"
+  Normal  Created                1m    kubelet, k8s-agent-97406cf-0  Created container
+  Normal  Started                1m    kubelet, k8s-agent-97406cf-0  Started container
+  Normal  Pulling                1m    kubelet, k8s-agent-97406cf-0  pulling image "brunoterkaly/py-red"
+  Normal  Pulled                 1m    kubelet, k8s-agent-97406cf-0  Successfully pulled image "brunoterkaly/py-red"
+  Normal  Created                1m    kubelet, k8s-agent-97406cf-0  Created container
+  Normal  Started                1m    kubelet, k8s-agent-97406cf-0  Started container
+kubectl describe pod mysql
+============================================
+Name:         mysql
+Namespace:    default
+Node:         k8s-agent-97406cf-2/10.240.0.5
+Start Time:   Mon, 13 Nov 2017 16:28:47 +0000
+Labels:       app=demo
+              name=mysql
+Annotations:  <none>
+Status:       Running
+IP:           10.244.2.13
+Containers:
+  mysql:
+    Container ID:   docker://8d8bc3986a9df55e9988a95bdebe7e6e4cd176430c1de86471549694fd8ff51e
+    Image:          mysql:latest
+    Image ID:       docker-pullable://mysql@sha256:1a2f9361228e9b10b4c77a651b460828514845dc7ac51735b919c2c4aec864b7
+    Port:           3306/TCP
+    State:          Running
+      Started:      Mon, 13 Nov 2017 16:28:50 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      MYSQL_ROOT_PASSWORD:  password
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-6l67c (ro)
+Conditions:
+  Type           Status
+  Initialized    True 
+  Ready          True 
+  PodScheduled   True 
+Volumes:
+  default-token-6l67c:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-6l67c
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     <none>
+Events:
+  Type    Reason                 Age   From                          Message
+  ----    ------                 ----  ----                          -------
+  Normal  Scheduled              1m    default-scheduler             Successfully assigned mysql to k8s-agent-97406cf-2
+  Normal  SuccessfulMountVolume  1m    kubelet, k8s-agent-97406cf-2  MountVolume.SetUp succeeded for volume "default-token-6l67c"
+  Normal  Pulling                1m    kubelet, k8s-agent-97406cf-2  pulling image "mysql:latest"
+  Normal  Pulled                 1m    kubelet, k8s-agent-97406cf-2  Successfully pulled image "mysql:latest"
+  Normal  Created                1m    kubelet, k8s-agent-97406cf-2  Created container
+  Normal  Started                1m    kubelet, k8s-agent-97406cf-2  Started container

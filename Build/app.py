@@ -33,7 +33,7 @@ def init():
        db.commit()
        return "\nDB Initialization done\n\n" 
     except (MySQLdb.Error, MySQLdb.Warning) as e:
-       return e.msg
+       return "MySQL Error: %s" % str(e)
 
 @app.route("/courses/add", methods=['POST'])
 def add_courses():
@@ -48,7 +48,7 @@ def add_courses():
        db.commit()
        return Response("Added\n\n", status=200, mimetype='application/json')
     except (MySQLdb.Error, MySQLdb.Warning) as e:
-       return e.msg
+       return "MySQL Error: %s" % str(e)
 
 @app.route('/courses/<uid>')
 def get_courses(uid):
@@ -72,7 +72,7 @@ def get_courses(uid):
            else:
                return "\n\nRecord not found\n\n"
     except (MySQLdb.Error, MySQLdb.Warning) as e:
-       return e.msg
+       return "MySQL Error: %s" % str(e)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

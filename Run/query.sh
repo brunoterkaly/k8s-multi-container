@@ -1,4 +1,4 @@
-curl http://40.83.189.240/courses/1
-curl http://40.83.189.240/courses/2
-curl http://40.83.189.240/courses/3
+curl http://13.91.94.223/courses/1
+curl http://13.91.94.223/courses/2
+curl http://13.91.94.223/courses/3
 

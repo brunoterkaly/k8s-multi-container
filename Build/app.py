@@ -19,6 +19,17 @@ R_SERVER = redis.Redis(host=os.environ.get('REDIS_HOST', 'redis'), port=6379)
 def healthz():
     return Response("Is Healthy", status=200, mimetype='application/json')
 
+@app.route('/healthzdb') 
+def testdb(): 
+    try: 
+        db = MySQLdb.connect("mysql","root","password")
+        cursor = db.cursor()
+        cursor.execute("SELECT 1")
+        return Response("DB is Healthy", status=200, mimetype='application/json')
+    except: 
+        return Response("DB not Healthy", status=404, mimetype='application/json')
+
+
 @app.route('/init')
 def init():
     try: 

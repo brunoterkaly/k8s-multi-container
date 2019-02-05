@@ -7,7 +7,7 @@ metadata:
     app: demo
 spec:
   selector:
-    name: web 
+    name: web
   type: LoadBalancer
   ports:
    - port: 80

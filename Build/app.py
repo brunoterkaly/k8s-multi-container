@@ -79,7 +79,6 @@ def get_courses(uid):
                json_data = json.dumps(data)
                R_SERVER.set(key,json_data)
                R_SERVER.expire(key, 500)
-               #return "{ 'abc' }"
                return R_SERVER.get(key) + "\n\nSuccess\n\n"
            else:
                return "\n\nRecord not found\n\n"

@@ -1,26 +1,25 @@
---- 
+---
 apiVersion: v1
 kind: Pod
-metadata: 
-  labels: 
+metadata:
+  labels:
     app: demo
     name: web
   name: web1
-spec: 
-  containers: 
-    - image: redis
+spec:
+  containers:
+    - image: redis:latest
       name: redis
-      ports: 
+      ports:
         - containerPort: 6379
           name: redis
           protocol: TCP
     - image: brunoterkaly/py-red
       name: python
-      env: 
+      env:
         - name: REDIS_HOST
           value: localhost
-      ports: 
+      ports:
         - containerPort: 5000
           name: http
           protocol: TCP
-

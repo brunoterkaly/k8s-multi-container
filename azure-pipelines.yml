@@ -13,5 +13,6 @@ variables:
   imageName: 'your-container-image-name:$(build.buildId)'
 
 steps:
-- script: docker build -f Dockerfile -t $(imageName) .
+- script:  docker build -f /Build/Dockerfile -t brunoterkaly/py-red
+- script:  docker push brunoterkaly/py-red
   displayName: 'docker build'

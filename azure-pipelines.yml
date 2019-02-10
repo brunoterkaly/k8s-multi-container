@@ -16,6 +16,9 @@ variables:
 
 steps:
 - script: |
+    displayName: 'docker login'
     docker login -u $(dockerId) -p $(pswd)
+    displayName: 'docker build'
     docker build -t $(dockerId)/$(imageName) . 
+    displayName: 'docker push'
     docker push $(dockerId)/$(imageName)

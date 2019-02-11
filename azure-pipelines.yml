@@ -16,10 +16,11 @@ variables:
 
 steps:
 - script: |
-    workingDirectory: /Build
+    workingDirectory: Build
     
     docker login -u $(dockerId) -p $(pswd)
     
+    workingDirectory: Build
     docker build -f Build/Dockerfile -t $(dockerId)/$(imageName) . 
     
-    #docker push $(dockerId)/$(imageName)
+    docker push $(dockerId)/$(imageName)

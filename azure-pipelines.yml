@@ -15,8 +15,10 @@ variables:
   pswd: BrunoAria_2015
 
 steps:
+
 - script: |
-    workingDirectory: Build
+  
+    # Login to Docker
     
     docker login -u $(dockerId) -p $(pswd)
     
@@ -24,3 +26,18 @@ steps:
     docker build -f Dockerfile -t $(dockerId)/$(imageName) . 
     
     docker push $(dockerId)/$(imageName)
+
+    - task: Kubernetes@1
+      displayName: kubectl apply for secretType dockerRegistry
+      inputs:
+        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        azureResourceGroup: $(azureResourceGroup)
+        kubernetesCluster: $(kubernetesCluster)
+        command: apply
+        arguments: -f mhc-aks.yaml
+        secretType: dockerRegistry
+        containerRegistryType: Azure Container Registry
+        azureSubscriptionEndpointForSecrets: $(azureSubscriptionEndpoint)
+        azureContainerRegistry: $(azureContainerRegistry)
+        secretName: mysecretkey2
+        forceUpdate: true

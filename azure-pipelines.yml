@@ -14,6 +14,10 @@ variables:
   dockerId: brunoterkaly
   azureResourceGroup: rg-my-aks-cluster
   kubernetesCluster: my-aks-cluster
+  azureSubscriptionEndpoint: Contoso
+  azureContainerRegistry: contoso.azurecr.io
+  azureResourceGroup: Contoso
+  kubernetesCluster: Contoso
 
 
 steps:
@@ -31,13 +35,18 @@ steps:
 
 - task: Kubernetes@1
   displayName: kubectl apply
-  inputs:
-    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-    azureResourceGroup: $(azureResourceGroup)
-    kubernetesCluster: $(kubernetesCluster)
-    connectionType: Kubernetes Service Connection
-    kubernetesServiceEndpoint: connection-kubernetes
-    command: apply
+
+
+# steps:
+# - task: Kubernetes@1
+#   displayName: kubectl apply
+#   inputs:
+#     connectionType: Azure Resource Manager
+#     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+#     azureResourceGroup: $(azureResourceGroup)
+#     kubernetesCluster: $(kubernetesCluster)
+
+#    command: apply
 #    arguments: -f Deploy/web-svc-1.yml
 
 #  inputs:

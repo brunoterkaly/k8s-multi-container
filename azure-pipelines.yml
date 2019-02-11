@@ -16,8 +16,6 @@ variables:
   kubernetesCluster: my-aks-cluster
   azureSubscriptionEndpoint: Contoso
   azureContainerRegistry: contoso.azurecr.io
-  azureResourceGroup: Contoso
-  kubernetesCluster: Contoso
 
 
 steps:

@@ -20,6 +20,6 @@ steps:
     
     docker login -u $(dockerId) -p $(pswd)
     
-    #docker build -f Build/Dockerfile -t $(dockerId)/$(imageName) . 
+    docker build -f Build/Dockerfile -t $(dockerId)/$(imageName) . 
     
     #docker push $(dockerId)/$(imageName)

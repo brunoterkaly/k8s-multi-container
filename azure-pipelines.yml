@@ -27,17 +27,12 @@ steps:
     
     docker push $(dockerId)/$(imageName)
 
-    - task: Kubernetes@1
-      displayName: kubectl apply for secretType dockerRegistry
-      inputs:
-        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureResourceGroup: $(azureResourceGroup)
-        kubernetesCluster: $(kubernetesCluster)
-        command: apply
-        arguments: -f mhc-aks.yaml
-        secretType: dockerRegistry
-        containerRegistryType: Azure Container Registry
-        azureSubscriptionEndpointForSecrets: $(azureSubscriptionEndpoint)
-        azureContainerRegistry: $(azureContainerRegistry)
-        secretName: mysecretkey2
-        forceUpdate: true
+- task: Kubernetes@1
+  displayName: kubectl apply using arguments
+  inputs:
+    connectionType: Azure Resource Manager
+    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    azureResourceGroup: $(azureResourceGroup)
+    kubernetesCluster: $(kubernetesCluster)
+    command: apply
+    arguments: -f mhc-aks.yaml

@@ -31,6 +31,15 @@ steps:
 
 - task: Kubernetes@1
   displayName: kubectl apply
+  inputs:
+    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    azureResourceGroup: $(azureResourceGroup)
+    kubernetesCluster: $(kubernetesCluster)
+    connectionType: Kubernetes Service Connection
+    kubernetesServiceEndpoint: connection-kubernetes
+    command: apply
+#    arguments: -f Deploy/web-svc-1.yml
+
 #  inputs:
 #    connectionType: Kubernetes Service Connection
 #    kubernetesServiceEndpoint: connection-kubernetes

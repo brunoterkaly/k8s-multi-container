@@ -31,17 +31,16 @@ steps:
 
 - task: Kubernetes@1
   displayName: kubectl apply
-  inputs:
+#  inputs:
+#    connectionType: Kubernetes Service Connection
+#    kubernetesServiceEndpoint: connection-kubernetes
+#    containerregistrytype: Container Registry
+#    dockerRegistryEndpoint: connection-docker
+#    command: login    
 
-    connectionType: Kubernetes Service Connection
-    kubernetesServiceEndpoint: connection-kubernetes
-    containerregistrytype: Container Registry
-    dockerRegistryEndpoint: connection-docker
-    command: login    
-
-    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-    azureResourceGroup: $(azureResourceGroup)
-    kubernetesCluster: $(kubernetesCluster)
-    command: apply
-    arguments: -f Deploy/web-svc-1.yml
+#    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+#    azureResourceGroup: $(azureResourceGroup)
+#    kubernetesCluster: $(kubernetesCluster)
+#    command: apply
+#    arguments: -f Deploy/web-svc-1.yml
 

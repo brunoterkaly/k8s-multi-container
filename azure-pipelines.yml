@@ -12,7 +12,7 @@ pool:
 variables:
   imageName: 'py-red:$(build.buildId)'
   dockerId: brunoterkaly
-  pswd: BrunoAria_2015
+ 
 
 steps:
 

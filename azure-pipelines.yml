@@ -12,7 +12,9 @@ pool:
 variables:
   imageName: 'py-red:$(build.buildId)'
   dockerId: brunoterkaly
- 
+  azureResourceGroup: rg-my-aks-cluster
+  kubernetesCluster: my-aks-cluster
+
 
 steps:
 
@@ -28,11 +30,18 @@ steps:
     docker push $(dockerId)/$(imageName)
 
 - task: Kubernetes@1
-  displayName: kubectl apply using arguments
+  displayName: kubectl apply
   inputs:
-    connectionType: Azure Resource Manager
+
+    connectionType: Kubernetes Service Connection
+    kubernetesServiceEndpoint: connection-kubernetes
+    containerregistrytype: Container Registry
+    dockerRegistryEndpoint: connection-docker
+    command: login    
+
     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
     azureResourceGroup: $(azureResourceGroup)
     kubernetesCluster: $(kubernetesCluster)
     command: apply
-    arguments: -f mhc-aks.yaml
+    arguments: -f Deploy/web-svc-1.yml
+

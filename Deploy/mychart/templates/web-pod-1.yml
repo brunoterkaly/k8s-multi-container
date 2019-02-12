@@ -1,0 +1,26 @@
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: {{ .Values.metadata.labels.app }}
+    name: {{ .Values.metadata.labels.name }}
+  name: {{ .Values.metadata.name }}
+spec:
+  containers:
+    - image: {{ .Values.containers.image1 }}
+      name: {{ .Values.containers.name1 }}
+      ports:
+        - containerPort: {{ .Values.containers.containerPort1 }}
+          name: {{ .Values.containers.name1 }}
+          protocol: TCP
+    - image: {{ .Values.containers.image2 }}
+      name: {{ .Values.containers.name2 }}
+      env:
+        - name: {{ .Values.containers.env.name }}
+          value: {{ .Values.containers.env.value }}
+      ports:
+        - containerPort: {{ .Values.containers.env.containerPort }}
+          name: http
+          protocol: TCP

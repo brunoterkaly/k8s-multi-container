@@ -1,48 +1,48 @@
 # Default values for mychart.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+---
+# for web-pod-1.yml
+metadata:
+  labels:
+    app: demo
+    name: web
+  name: web1
+containers:
+  image1: redis:latest
+  name1: redis
+  containerPort1: 6379
+  image2: brunoterkaly/py-red
+  name2: python
+  env:
+    name: REDIS_HOST
+    value: localhost
+    containerPort: 5000
 
-replicaCount: 1
-
-image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
-
-nameOverride: ""
-fullnameOverride: ""
-
-service:
-  type: ClusterIP
+# for web-svc-1.yml
+webservice:
+  type: LoadBalancer
   port: 80
+  targetPort: 5000
 
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  paths: []
-  hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+# for db-pod-1.yml
+mysqlpod:
+  name: mysql
+  label_name: mysql
+  label_app: demo
+  container_name: mysql
+  container_image: mysql:5.7
+  container_port: 3306
+  env_name: "MYSQL_ROOT_PASSWORD"
+  env_value: "password"
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+# for db-svc-1.yml
+mysqlsvc:
+  name: mysql
+  label_name: mysql
+  label_app: demo
+  port_name: mysql
+  port_port: 3306
+  port_targetport: 3306
+  selector_name: mysql
+  selector_app: demo

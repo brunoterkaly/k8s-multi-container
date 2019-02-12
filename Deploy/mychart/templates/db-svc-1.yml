@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.mysqlsvc.name }}
+  labels:
+    name: {{ .Values.mysqlsvc.label_name }}
+    app: {{ .Values.mysqlsvc.label_app }}
+spec:
+  ports:
+    - name: {{ .Values.mysqlsvc.port_name }}
+      port: {{ .Values.mysqlsvc.port_port }}
+      targetPort: {{ .Values.mysqlsvc.port_targetport }}
+  selector:
+    name: {{ .Values.mysqlsvc.selector_name }}
+    app: {{ .Values.mysqlsvc.selector_app }}

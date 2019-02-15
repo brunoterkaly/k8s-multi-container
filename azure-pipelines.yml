@@ -56,6 +56,32 @@ steps:
   displayName: 'docker push'
 
 #==================================================================
+# Install Helm
+#==================================================================
+HelmInstaller@0
+  displayName: 'Install Helm'
+  inputs:
+    helmVersion: 2.12.3
+
+#==================================================================
+# Package up the charts with Helm
+#==================================================================
+# - bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(projectName)/charts/$(projectName)
+#   displayName: 'helm package'
+
+#==================================================================
+# Login into Azure using Service Principal
+#==================================================================
+# - bash: az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+#   displayName: 'az login'
+
+#==================================================================
+# Deploy to
+#==================================================================
+# - bash: az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(projectName)-$(build.buildId).tgz
+#   displayName: 'az acr helm push'
+
+#==================================================================
 # Misc Commands
 #==================================================================
 - bash:

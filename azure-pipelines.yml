@@ -32,6 +32,13 @@ steps:
 - bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(imageName) $(system.defaultWorkingDirectory)/$(buildDir)
 #- bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(projectName):latest
 
+
+
+- bash: docker login $(registryServerName) -u $(registryLogin) -p $(registryPassword)
+  displayName: 'docker login'
+
+
+
 - bash: 
    echo "Default Working Directory"
 - bash: 

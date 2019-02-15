@@ -7,6 +7,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
+  configuration: debug
   projectName: py-red
   buildDir: Build
   imageName: $(projectName):$(build.buildId)
@@ -30,7 +31,7 @@ trigger:
 steps:
 
 - bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(imageName) $(system.defaultWorkingDirectory)/$(buildDir)
-#- bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(projectName):latest
+- bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(imageName):latest $(system.defaultWorkingDirectory)/$(buildDir)
   displayName: 'docker build'
 
 - bash: docker login $(registryServerName) -u $(registryLogin) -p $(registryPassword)
@@ -42,7 +43,7 @@ steps:
     docker push $(registryServerName)/$(imageName):latest
   displayName: 'docker push'
 
-  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  #condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
 
 - bash: 
    echo "Default Working Directory"

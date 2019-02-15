@@ -32,12 +32,15 @@ steps:
 
 - bash: 
    echo "Default Working Directory"
+- bash: 
    echo $(system.defaultWorkingDirectory)
-   echo "ls -latr $(system.defaultWorkingDirectory)"
+- bash: 
+   ls -latr $(system.defaultWorkingDirectory)
 
 - bash: 
    echo "Project Name"
-   echo $(projectName)
+- bash: 
+    echo $(projectName)
 
 - bash: echo $(registryServerName)
 

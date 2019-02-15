@@ -19,6 +19,9 @@ variables:
   kubernetesCluster: my-aks-cluster
   azureContainerRegistry: azureregistrykubernetes.azurecr.io
 
+#==================================================================
+# TRIGGERS
+#==================================================================
 trigger:
   branches:
     include:
@@ -28,9 +31,15 @@ trigger:
     include:
     - k8s-multi-container
 
+#==================================================================
+# STEPS SECTION
+#==================================================================
+
 steps:
 
-##############BUILD IMAGE##################
+#==================================================================
+# BUILD IMAGE
+#==================================================================
 - bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(imageName) $(system.defaultWorkingDirectory)/$(buildDir)
 - bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(projectName):latest $(system.defaultWorkingDirectory)/$(buildDir)
   displayName: 'docker build'
@@ -38,15 +47,17 @@ steps:
 - bash: docker login $(registryServerName) -u $(registryLogin) -p $(registryPassword)
   displayName: 'docker login'
 
-##############PUSH IMAGE##################
+#==================================================================
+# PUSH IMAGE
+#==================================================================
 - bash: |
     docker push  $(registryServerName)/$(imageName)
     docker push $(registryServerName)/$(projectName):latest
   displayName: 'docker push'
 
-#condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-
-##############MISC COMMANDS##################
+#==================================================================
+# Misc Commands
+#==================================================================
 - bash:
    echo "Default Working Directory"
 - bash:
@@ -63,6 +74,10 @@ steps:
 
 - bash: echo $(imageName)
 
+#==================================================================
+# Other snippets
+#==================================================================
+#condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
 #- bash: docker build -f $(system.defaultWorkingDirectory)/$(projectName)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) -t $(registryServerName)/$(imageName):latest $(system.defaultWorkingDirectory)/$(projectName)
 
   # displayName: 'docker build'

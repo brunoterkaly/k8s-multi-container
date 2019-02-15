@@ -3,9 +3,6 @@
 # Add steps that use Docker Compose, tag images, push to a registry, run an image, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
-trigger:
-- master
-
 pool:
   vmImage: 'Ubuntu-16.04'
 
@@ -14,14 +11,20 @@ variables:
   imageName: $(projectName):$(build.buildId)
   registryName: azureregistrykubernetes
   registryServerName: $(registryName).azurecr.io
-  tenantId:
-  registryLogin:
-  registryPassword:
 
   dockerId: brunoterkaly
   azureResourceGroup: rg-my-aks-cluster
   kubernetesCluster: my-aks-cluster
   azureContainerRegistry: azureregistrykubernetes.azurecr.io
+
+trigger:
+  branches:
+    include:
+    - master
+    - features/*
+  paths:
+    include:
+    - k8s-multi-container
 
 steps:
 

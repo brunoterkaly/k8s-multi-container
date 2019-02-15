@@ -33,6 +33,7 @@ steps:
 - bash: 
    echo "Default Working Directory"
    echo $(system.defaultWorkingDirectory)
+   echo "ls -latr $(system.defaultWorkingDirectory)"
 
 - bash: 
    echo "Project Name"

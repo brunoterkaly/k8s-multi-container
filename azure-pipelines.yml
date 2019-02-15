@@ -29,7 +29,7 @@ trigger:
 
 steps:
 
-- bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(imageName) -t $(registryServerName)/$(imageName):latest $(system.defaultWorkingDirectory)/$(buildDir)
+- bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(imageName) -t $(registryServerName)/$(projectName):latest $(system.defaultWorkingDirectory)/$(buildDir)
 
 - bash: 
    echo "Default Working Directory"

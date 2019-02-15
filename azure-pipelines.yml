@@ -39,8 +39,8 @@ steps:
 
 
 - bash: |
-    docker push $(registryServerName)/$(imageName):$(build.buildId)
-    docker push $(registryServerName)/$(imageName):latest
+    docker push  $(registryServerName)/$(imageName)
+    docker push $(registryServerName)/$(projectName):latest
   displayName: 'docker push'
 
   #condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))

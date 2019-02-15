@@ -30,6 +30,7 @@ trigger:
 
 steps:
 
+##############BUILD IMAGE##################
 - bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(imageName) $(system.defaultWorkingDirectory)/$(buildDir)
 - bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(projectName):latest $(system.defaultWorkingDirectory)/$(buildDir)
   displayName: 'docker build'
@@ -37,24 +38,25 @@ steps:
 - bash: docker login $(registryServerName) -u $(registryLogin) -p $(registryPassword)
   displayName: 'docker login'
 
-
+##############PUSH IMAGE##################
 - bash: |
     docker push  $(registryServerName)/$(imageName)
     docker push $(registryServerName)/$(projectName):latest
   displayName: 'docker push'
 
-  #condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
 
-- bash: 
+##############MISC COMMANDS##################
+- bash:
    echo "Default Working Directory"
-- bash: 
+- bash:
    echo $(system.defaultWorkingDirectory)
-- bash: 
+- bash:
    ls -latr $(system.defaultWorkingDirectory)
 
-- bash: 
+- bash:
    echo "Project Name"
-- bash: 
+- bash:
     echo $(projectName)
 
 - bash: echo $(registryServerName)
@@ -62,8 +64,6 @@ steps:
 - bash: echo $(imageName)
 
 #- bash: docker build -f $(system.defaultWorkingDirectory)/$(projectName)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) -t $(registryServerName)/$(imageName):latest $(system.defaultWorkingDirectory)/$(projectName)
-
-
 
   # displayName: 'docker build'
 

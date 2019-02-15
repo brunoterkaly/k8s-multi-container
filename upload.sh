@@ -1,5 +1,4 @@
 git init
 git add --all
-git commit -m "first commit"
+git commit -m $1
 git push -u origin master
-

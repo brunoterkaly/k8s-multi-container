@@ -10,7 +10,14 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'py-red:$(build.buildId)'
+  projectName: py-red
+  imageName: $(projectName):$(build.buildId)
+  registryName: azureregistrykubernetes
+  registryServerName: $(registryName).azurecr.io
+  tenantId:
+  registryLogin:
+  registryPassword:
+
   dockerId: brunoterkaly
   azureResourceGroup: rg-my-aks-cluster
   kubernetesCluster: my-aks-cluster

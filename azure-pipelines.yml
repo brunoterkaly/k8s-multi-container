@@ -8,6 +8,7 @@ pool:
 
 variables:
   projectName: py-red
+  buildDir: Build
   imageName: $(projectName):$(build.buildId)
   registryName: azureregistrykubernetes
   registryServerName: $(registryName).azurecr.io
@@ -28,7 +29,7 @@ trigger:
 
 steps:
 
-#- bash: docker build -f $(system.defaultWorkingDirectory)/$(projectName)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) -t $(registryServerName)/$(imageName):latest $(system.defaultWorkingDirectory)/$(projectName)
+- bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) -t $(registryServerName)/$(imageName):latest $(system.defaultWorkingDirectory)/$(projectName)
 
 - bash: 
    echo "Default Working Directory"
@@ -45,6 +46,10 @@ steps:
 - bash: echo $(registryServerName)
 
 - bash: echo $(imageName)
+
+- bash: docker build -f $(system.defaultWorkingDirectory)/$(projectName)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) -t $(registryServerName)/$(imageName):latest $(system.defaultWorkingDirectory)/$(projectName)
+
+
 
   # displayName: 'docker build'
 

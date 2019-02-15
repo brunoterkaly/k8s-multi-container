@@ -28,19 +28,23 @@ trigger:
 
 steps:
 
-- script: |
+#- bash: docker build -f $(system.defaultWorkingDirectory)/$(projectName)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) -t $(registryServerName)/$(imageName):latest $(system.defaultWorkingDirectory)/$(projectName)
+- bash: echo $(system.defaultWorkingDirectory)
+        echo $(projectName)
+        echo $(registryServerName)
+        echo $(imageName)
+
+  displayName: 'docker build'
 
     # Login to Docker
 
-    docker login -u $(dockerId) -p $(pswd)
+#    docker login -u $(dockerId) -p $(pswd)
+#    cd Build
+#    docker build -f Dockerfile -t $(dockerId)/$(imageName) .
+#    docker push $(dockerId)/$(imageName)
 
-    cd Build
-    docker build -f Dockerfile -t $(dockerId)/$(imageName) .
-
-    docker push $(dockerId)/$(imageName)
-
-- task: Kubernetes@1
-  displayName: kubectl apply
+#- task: Kubernetes@1
+#  displayName: kubectl apply
 
 # steps:
 # - task: Kubernetes@1

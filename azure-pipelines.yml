@@ -30,9 +30,13 @@ steps:
 
 #- bash: docker build -f $(system.defaultWorkingDirectory)/$(projectName)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) -t $(registryServerName)/$(imageName):latest $(system.defaultWorkingDirectory)/$(projectName)
 
-- bash: echo $(system.defaultWorkingDirectory)
+- bash: 
+   echo "Default Working Directory"
+   echo $(system.defaultWorkingDirectory)
 
-- bash: echo $(projectName)
+- bash: 
+   echo "Project Name"
+   echo $(projectName)
 
 - bash: echo $(registryServerName)
 

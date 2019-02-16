@@ -10,6 +10,8 @@ variables:
   configuration: debug
   projectName: py-red
   buildDir: Build
+  deployDir: Deploy
+  chartDir: Deploy/mychart
   imageName: $(projectName):$(build.buildId)
   registryName: azureregistrykubernetes
   registryServerName: $(registryName).azurecr.io
@@ -69,14 +71,15 @@ steps:
     helmVersion: 2.12.3
     checkLatestHelmVersion: true
     installKubectl: true
-    kubectlVersion: 1.8.9
+    kubectlVersion: 1.13.0
     checkLatestKubectl: true
 
 #==================================================================
 # Package up the charts with Helm
 #==================================================================
-# - bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(projectName)/charts/$(projectName)
-#   displayName: 'helm package'
+- bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) \
+                      $(system.defaultWorkingDirectory)/$(chartDir)
+  displayName: 'helm package'
 
 #==================================================================
 # Login into Azure using Service Principal

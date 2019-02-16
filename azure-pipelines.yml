@@ -58,10 +58,20 @@ steps:
 #==================================================================
 # Install Helm
 #==================================================================
-HelmInstaller@0
-  displayName: 'Install Helm'
+#HelmInstaller@0
+#  displayName: 'Install Helm'
+#  inputs:
+#    helmVersion: 2.12.3
+
+- task: HelmInstaller@0
+  displayName: Helm Installer
   inputs:
-    helmVersion: 2.12.3
+    helmVersion: 2.9.1
+    checkLatestHelmVersion: true
+    installKubectl: true 
+    kubectlVersion: 1.8.9
+    checkLatestKubectl: true
+
 
 #==================================================================
 # Package up the charts with Helm

@@ -61,10 +61,6 @@ steps:
 #==================================================================
 # Install Helm
 #==================================================================
-#HelmInstaller@0
-#  displayName: 'Install Helm'
-#  inputs:
-#    helmVersion: 2.12.3
 
 - task: HelmInstaller@0
   displayName: Helm Installer
@@ -93,6 +89,13 @@ steps:
 #==================================================================
 - bash: az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
   displayName: 'az acr helm push'
+
+#==================================================================
+# View Helm Charts in Azure Container Registry.
+#==================================================================
+- bash: 
+     az acr helm show -n $(registryName) $(chartPackageName)
+  displayName: 'az acr helm show $(registryName) $(chartPackageName)'
 
 #==================================================================
 # Misc Commands

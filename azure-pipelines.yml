@@ -12,6 +12,7 @@ variables:
   buildDir: Build
   deployDir: Deploy
   chartDir: Deploy/mychart
+  chartPackageName: mychart
   imageName: $(projectName):$(build.buildId)
   registryName: azureregistrykubernetes
   registryServerName: $(registryName).azurecr.io
@@ -79,7 +80,7 @@ steps:
 #==================================================================
 - bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory)
                       $(system.defaultWorkingDirectory)/$(chartDir)
-  displayName: 'helm package'
+  displayName: 'helm Package'
 
 #==================================================================
 # Login into Azure using Service Principal
@@ -88,10 +89,10 @@ steps:
   displayName: 'az login'
 
 #==================================================================
-# Deploy to
+# Push a helm chart package to an Azure Container Registry.
 #==================================================================
-# - bash: az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(projectName)-$(build.buildId).tgz
-#   displayName: 'az acr helm push'
+- bash: az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
+  displayName: 'az acr helm push'
 
 #==================================================================
 # Misc Commands

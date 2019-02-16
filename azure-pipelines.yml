@@ -77,7 +77,7 @@ steps:
 #==================================================================
 # Package up the charts with Helm
 #==================================================================
-- bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) \
+- bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory)
                       $(system.defaultWorkingDirectory)/$(chartDir)
   displayName: 'helm package'
 

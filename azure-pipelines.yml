@@ -84,8 +84,8 @@ steps:
 #==================================================================
 # Login into Azure using Service Principal
 #==================================================================
-# - bash: az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
-#   displayName: 'az login'
+- bash: az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+  displayName: 'az login'
 
 #==================================================================
 # Deploy to

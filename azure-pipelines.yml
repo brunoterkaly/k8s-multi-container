@@ -81,7 +81,11 @@ steps:
 #==================================================================
 # Login into Azure using Service Principal
 #==================================================================
-- bash: az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+- bash: |
+    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+    az aks install-cli
+    az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster)
+    
   displayName: 'az login'
 
 #==================================================================

@@ -41,6 +41,18 @@ trigger:
 steps:
 
 #==================================================================
+# Login into Azure using Service Principal
+#==================================================================
+- bash: |
+    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+    az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
+    az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
+    
+  displayName: 'az login'
+
+
+
+#==================================================================
 # BUILD IMAGE
 #==================================================================
 - bash: docker build -f $(system.defaultWorkingDirectory)/$(buildDir)/Dockerfile -t $(registryServerName)/$(imageName) $(system.defaultWorkingDirectory)/$(buildDir)
@@ -84,8 +96,7 @@ steps:
 - bash: |
     az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
     az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
-# az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
-#    az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
+    az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
     
   displayName: 'az login'
 

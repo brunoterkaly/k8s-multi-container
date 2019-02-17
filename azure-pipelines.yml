@@ -83,8 +83,8 @@ steps:
 #==================================================================
 - bash: |
     az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
-    az aks install-cli
-    sudo az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster)
+    sudo az aks install-cli
+    sudo az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
     
   displayName: 'az login'
 

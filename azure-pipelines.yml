@@ -83,6 +83,7 @@ steps:
     export KUBECONFIG=/home/vsts/.kube/config
     az acr helm list -n $(registryName)
     az acr helm repo add -n  $(registryName)
+    echo "Get load balancer"
     LB=$(az network public-ip list | jq '.[0] | .name')
     echo $LB
 

@@ -86,14 +86,6 @@ steps:
     az acr helm repo add -n  $(registryName)
     $(kubectl) delete ns dev
     helm install --namespace dev $(registryName)/$(chartPackageName)
-    
-
-
-#    helm search  $(registryName)
-#    helm inspect  $(registryName)/$(chartPackageName)
-
-#    helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory)
-#                      $(system.defaultWorkingDirectory)/$(chartDir)
   displayName: 'helm Package'
 
 #==================================================================

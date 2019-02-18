@@ -41,6 +41,21 @@ trigger:
 
 steps:
 
+
+#==================================================================
+# Install Helm
+#==================================================================
+
+- task: HelmInstaller@0
+  displayName: Helm Installer
+  inputs:
+    helmVersion: 2.12.3
+    checkLatestHelmVersion: true
+    installKubectl: true
+    kubectlVersion: 1.13.0
+    checkLatestKubectl: true
+    
+
 #==================================================================
 # Login into Azure using Service Principal
 #==================================================================
@@ -53,10 +68,11 @@ steps:
     $(kubectl) cluster-info
     $(kubectl) delete --namespace dev
     echo "hello"
+    helm install --dry-run --debug ./mychart
+
 
     
   displayName: 'az login'
-
 
 
 #==================================================================
@@ -77,18 +93,7 @@ steps:
     docker push $(registryServerName)/$(projectName):latest
   displayName: 'docker push'
 
-#==================================================================
-# Install Helm
-#==================================================================
 
-- task: HelmInstaller@0
-  displayName: Helm Installer
-  inputs:
-    helmVersion: 2.12.3
-    checkLatestHelmVersion: true
-    installKubectl: true
-    kubectlVersion: 1.13.0
-    checkLatestKubectl: true
 
 #==================================================================
 # Package up the charts with Helm

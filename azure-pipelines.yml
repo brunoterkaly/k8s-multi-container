@@ -54,6 +54,7 @@ steps:
     kubectlVersion: 1.13.0
     checkLatestKubectl: true
 
+
 #==================================================================
 # BUILD IMAGE
 #==================================================================
@@ -77,9 +78,13 @@ steps:
 #==================================================================
 - bash: |
     az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+    az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
+    az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
+    export KUBECONFIG=/home/vsts/.kube/config
     helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory)
                       $(system.defaultWorkingDirectory)/$(chartDir)
   displayName: 'helm Package'
+
 
 #==================================================================
 # Push a helm chart package to an Azure Container Registry.
@@ -114,7 +119,7 @@ steps:
     az acr repository list -n azureregistrykubernetes
     az acr helm list -n azureregistrykubernetes
     az acr helm show mychart -n azureregistrykubernetes
-    helm install azureregistrykubernetes/$(chartPackageName)-$(build.buildId)
+#    helm install azureregistrykubernetes/$(chartPackageName)-$(build.buildId)
 
   displayName: 'az login'
 

@@ -13,6 +13,7 @@ variables:
   deployDir: Deploy
   chartDir: Deploy/mychart
   chartPackageName: mychart
+  kubectl: /home/vsts/work/1/a/kubctl
   imageName: $(projectName):$(build.buildId)
   registryName: azureregistrykubernetes
   registryServerName: $(registryName).azurecr.io
@@ -47,6 +48,9 @@ steps:
     az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
     az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
     az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
+    export KUBECONFIG=/home/vsts/.kube/config
+    $(build.artifactStagingDirectory)/kubectl cluster-info
+    $(kubectl) cluster-info
     
   displayName: 'az login'
 

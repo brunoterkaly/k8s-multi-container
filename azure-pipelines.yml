@@ -50,7 +50,7 @@ steps:
     az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
     export KUBECONFIG=/home/vsts/.kube/config
     $(build.artifactStagingDirectory)/kubectl cluster-info
-    $(kubectl) cluster-info
+#    $(kubectl) cluster-info
     
   displayName: 'az login'
 

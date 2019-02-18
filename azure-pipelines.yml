@@ -68,6 +68,7 @@ steps:
     $(kubectl) cluster-info
     $(kubectl) delete namespaces dev
     echo "hello"
+    ls -ltR $(build.artifactStagingDirectory)
     helm install $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
 
 

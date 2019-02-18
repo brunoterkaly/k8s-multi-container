@@ -96,50 +96,6 @@ steps:
 #                      $(system.defaultWorkingDirectory)/$(chartDir)
   displayName: 'helm Package'
 
-
-#==================================================================
-# Push a helm chart package to an Azure Container Registry.
-#==================================================================
-- bash: |
-    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
-    az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
-  displayName: 'az acr helm push'
-
-#==================================================================
-# View Helm Charts in Azure Container Registry.
-#==================================================================
-- bash: |
-    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
-    az acr helm show -n $(registryName) $(chartPackageName)
-  displayName: 'az acr helm show $(registryName) $(chartPackageName)'
-
-#==================================================================
-# Login into Azure using Service Principal
-#==================================================================
-- bash: |
-    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
-    az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
-    az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
-    export KUBECONFIG=/home/vsts/.kube/config
-    $(build.artifactStagingDirectory)/kubectl cluster-info
-    $(kubectl) cluster-info
-    $(kubectl) delete namespaces dev
-    echo "hello"
-    ls -ltR $(build.artifactStagingDirectory)
-    echo "az acr helm show -n azureregistrykubernetes mychart"
-    az acr helm show -n azureregistrykubernetes mychart
-    echo "az acr repository list -n azureregistrykubernetes"
-    az acr repository list -n azureregistrykubernetes
-    echo "az acr helm list -n azureregistrykubernetes"
-    az acr helm list -n azureregistrykubernetes
-    echo "az acr helm show mychart -n azureregistrykubernetes"
-    az acr helm show mychart -n azureregistrykubernetes
-    echo "azureregistrykubernetes/mychart:171"
-    
-#    helm install azureregistrykubernetes/$(chartPackageName)-$(build.buildId)
-
-  displayName: 'az login'
-
 #==================================================================
 # Misc Commands
 #==================================================================

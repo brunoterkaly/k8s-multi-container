@@ -56,25 +56,6 @@ steps:
     checkLatestKubectl: true
     
 
-#==================================================================
-# Login into Azure using Service Principal
-#==================================================================
-- bash: |
-    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
-    az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
-    az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
-    export KUBECONFIG=/home/vsts/.kube/config
-    $(build.artifactStagingDirectory)/kubectl cluster-info
-    $(kubectl) cluster-info
-    $(kubectl) delete namespaces dev
-    echo "hello"
-    ls -ltR $(build.artifactStagingDirectory)
-    helm install $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
-
-
-    
-  displayName: 'az login'
-
 
 #==================================================================
 # BUILD IMAGE
@@ -116,6 +97,33 @@ steps:
 - bash: 
      az acr helm show -n $(registryName) $(chartPackageName)
   displayName: 'az acr helm show $(registryName) $(chartPackageName)'
+
+
+#==================================================================
+# Login into Azure using Service Principal
+#==================================================================
+- bash: |
+    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+    az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
+    az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
+    export KUBECONFIG=/home/vsts/.kube/config
+    $(build.artifactStagingDirectory)/kubectl cluster-info
+    $(kubectl) cluster-info
+    $(kubectl) delete namespaces dev
+    echo "hello"
+    ls -ltR $(build.artifactStagingDirectory)
+    az acr helm show -n azureregistrykubernetes mychart
+    az acr repository list -n azureregistrykubernetes
+    az acr helm list -n azureregistrykubernetes
+    az acr helm show mychart -n azureregistrykubernetes
+
+    helm install $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
+
+
+    
+  displayName: 'az login'
+
+
 
 #==================================================================
 # Misc Commands

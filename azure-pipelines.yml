@@ -117,7 +117,7 @@ steps:
     az acr helm list -n azureregistrykubernetes
     az acr helm show mychart -n azureregistrykubernetes
 
-    helm install $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
+    helm install $(registryName)/$(chartPackageName)-$(build.buildId).tgz
 
 
     

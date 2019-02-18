@@ -68,9 +68,8 @@ steps:
     $(kubectl) cluster-info
     $(kubectl) delete namespaces dev
     echo "hello"
-    helm repo add $(registryName) https://$(registryName).azurecr.io/helm/v1/repo --username $(registryLogin) --password $(registryPassword)
-    helm install /home/vsts/work/1/a/$(chartPackageName)-$(build.buildId).tgz
-
+    az aks helm repo add $(registryName) https://$(registryName).azurecr.io/helm/v1/repo --username $(registryLogin) --password $(registryPassword)
+    az acr helm install $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
 
 
     
@@ -104,15 +103,6 @@ steps:
                       $(system.defaultWorkingDirectory)/$(chartDir)
   displayName: 'helm Package'
 
-#==================================================================
-# Login into Azure using Service Principal
-#==================================================================
-- bash: |
-    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
-    az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
-    az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
-    
-  displayName: 'az login'
 
 #==================================================================
 # Push a helm chart package to an Azure Container Registry.

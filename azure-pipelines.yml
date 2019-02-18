@@ -41,7 +41,6 @@ trigger:
 
 steps:
 
-
 #==================================================================
 # Install Helm
 #==================================================================
@@ -54,8 +53,6 @@ steps:
     installKubectl: true
     kubectlVersion: 1.13.0
     checkLatestKubectl: true
-    
-
 
 #==================================================================
 # BUILD IMAGE
@@ -75,29 +72,30 @@ steps:
     docker push $(registryServerName)/$(projectName):latest
   displayName: 'docker push'
 
-
-
 #==================================================================
 # Package up the charts with Helm
 #==================================================================
-- bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory)
+- bash: |
+    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+    helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory)
                       $(system.defaultWorkingDirectory)/$(chartDir)
   displayName: 'helm Package'
-
 
 #==================================================================
 # Push a helm chart package to an Azure Container Registry.
 #==================================================================
-- bash: az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
+- bash: |
+    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+    az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
   displayName: 'az acr helm push'
 
 #==================================================================
 # View Helm Charts in Azure Container Registry.
 #==================================================================
-- bash: 
-     az acr helm show -n $(registryName) $(chartPackageName)
+- bash: |
+    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+    az acr helm show -n $(registryName) $(chartPackageName)
   displayName: 'az acr helm show $(registryName) $(chartPackageName)'
-
 
 #==================================================================
 # Login into Azure using Service Principal
@@ -116,14 +114,9 @@ steps:
     az acr repository list -n azureregistrykubernetes
     az acr helm list -n azureregistrykubernetes
     az acr helm show mychart -n azureregistrykubernetes
+    helm install azureregistrykubernetes/$(chartPackageName)-$(build.buildId)
 
-    helm install $(registryName)/$(chartPackageName)-$(build.buildId).tgz
-
-
-    
   displayName: 'az login'
-
-
 
 #==================================================================
 # Misc Commands

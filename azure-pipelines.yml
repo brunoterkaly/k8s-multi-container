@@ -83,7 +83,6 @@ steps:
     export KUBECONFIG=/home/vsts/.kube/config
     az acr helm list -n $(registryName)
     az acr helm repo add -n  $(registryName)
-    sudo apt-get install jq
     az network public-ip list | jq '.[0] | .name'
 
     $(kubectl) delete svc  mysql --namespace dev

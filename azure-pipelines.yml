@@ -69,7 +69,7 @@ steps:
     $(kubectl) delete namespaces dev
     echo "hello"
     helm repo add $(registryName) https://$(registryName).azurecr.io/helm/v1/repo --username $(registryLogin) --password $(registryPassword)
-    helm install /home/vsts/work/1/a/mychart-171.tgz
+    helm install /home/vsts/work/1/a/$(chartPackageName)-$(build.buildId).tgz
 
 
 

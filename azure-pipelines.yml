@@ -83,10 +83,10 @@ steps:
     export KUBECONFIG=/home/vsts/.kube/config
     az acr helm list -n $(registryName)
     az acr helm repo add -n  $(registryName)
-    $(kubectl) delete svc  mysql ns dev
-    $(kubectl) delete svc web ns dev
-    $(kubectl) delete pod web1 ns dev
-    $(kubectl) delete pod mysql ns dev
+    $(kubectl) delete svc  mysql --namespace dev
+    $(kubectl) delete svc web --namespace dev
+    $(kubectl) delete pod web1 --namespace dev
+    $(kubectl) delete pod mysql --namespace dev
     helm install --namespace dev $(registryName)/$(chartPackageName)
   displayName: 'helm Package'
 

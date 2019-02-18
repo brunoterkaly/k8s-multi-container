@@ -51,6 +51,8 @@ steps:
     export KUBECONFIG=/home/vsts/.kube/config
     $(build.artifactStagingDirectory)/kubectl cluster-info
     $(kubectl) cluster-info
+    $(kubectl) delete --namespace dev
+
     
   displayName: 'az login'
 

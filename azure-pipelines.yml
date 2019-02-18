@@ -83,7 +83,8 @@ steps:
     export KUBECONFIG=/home/vsts/.kube/config
     az acr helm list -n $(registryName)
     az acr helm repo add -n  $(registryName)
-    az network public-ip list | jq '.[0] | .name'
+    LB=$(az network public-ip list | jq '.[0] | .name')
+    echo $LB
 
     $(kubectl) delete svc  mysql --namespace dev
     $(kubectl) delete svc web --namespace dev

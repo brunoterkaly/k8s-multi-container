@@ -52,6 +52,7 @@ steps:
     $(build.artifactStagingDirectory)/kubectl cluster-info
     $(kubectl) cluster-info
     $(kubectl) delete --namespace dev
+    echo "hello"
 
     
   displayName: 'az login'

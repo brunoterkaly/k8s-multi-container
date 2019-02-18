@@ -7,6 +7,7 @@ import time
 import socket
 import datetime
 
+# Read and split a line
 def extract_line(s):
   s = re.sub('\x1b[^m]*m', '', s)
   s = re.sub(r'\x1b\[([0-9,A-Z]{1,2}(;[0-9]{1,2})?(;[0-9]{3})?)?[m|K]?', '', s)
@@ -15,8 +16,6 @@ def extract_line(s):
   s = sep.split(s)
   #del s[-1]
   return s[3]
-
-
 
 def skipLinesUntilToken(process, token):
     i = 0
@@ -71,5 +70,3 @@ print("public ip address for web service = ",newip)
 do_fix("init.sh", newip)
 do_fix("add.sh", newip)
 do_fix("query.sh", newip)
-
-

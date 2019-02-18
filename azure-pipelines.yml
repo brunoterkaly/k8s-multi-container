@@ -121,10 +121,16 @@ steps:
     $(kubectl) delete namespaces dev
     echo "hello"
     ls -ltR $(build.artifactStagingDirectory)
+    echo "az acr helm show -n azureregistrykubernetes mychart"
     az acr helm show -n azureregistrykubernetes mychart
+    echo "az acr repository list -n azureregistrykubernetes"
     az acr repository list -n azureregistrykubernetes
+    echo "az acr helm list -n azureregistrykubernetes"
     az acr helm list -n azureregistrykubernetes
+    echo "az acr helm show mychart -n azureregistrykubernetes"
     az acr helm show mychart -n azureregistrykubernetes
+    echo "azureregistrykubernetes/mychart:171"
+    
 #    helm install azureregistrykubernetes/$(chartPackageName)-$(build.buildId)
 
   displayName: 'az login'

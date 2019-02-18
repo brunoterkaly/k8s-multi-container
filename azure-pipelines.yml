@@ -68,8 +68,7 @@ steps:
     $(kubectl) cluster-info
     $(kubectl) delete namespaces dev
     echo "hello"
-    az aks helm repo add $(registryName) https://$(registryName).azurecr.io/helm/v1/repo --username $(registryLogin) --password $(registryPassword)
-    az acr helm install $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
+    helm install $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
 
 
     

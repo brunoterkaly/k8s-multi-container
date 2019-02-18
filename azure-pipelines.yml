@@ -66,7 +66,7 @@ steps:
     export KUBECONFIG=/home/vsts/.kube/config
     $(build.artifactStagingDirectory)/kubectl cluster-info
     $(kubectl) cluster-info
-    $(kubectl) delete --namespace dev
+    $(kubectl) delete namespaces dev
     echo "hello"
     helm install --dry-run --debug ./mychart
 

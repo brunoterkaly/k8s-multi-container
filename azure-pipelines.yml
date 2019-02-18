@@ -86,7 +86,7 @@ steps:
     echo "Get load balancer"
     LB=$(az network public-ip list | jq '.[0] | .name')
     echo $LB
-
+    az network public-ip delete --name $LB --resource-group $(azureResourceGroup)
     $(kubectl) delete svc  mysql --namespace dev
     $(kubectl) delete svc web --namespace dev
     $(kubectl) delete pod web1 --namespace dev

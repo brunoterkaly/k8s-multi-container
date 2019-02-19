@@ -15,13 +15,13 @@ variables:
   chartPackageName: mychart
   kubectl: $(build.artifactStagingDirectory)/kubectl
   imageName: $(projectName):$(build.buildId)
-  registryName: azureregistrykubernetes
+  registryName: azurekubernetesregistry
   registryServerName: $(registryName).azurecr.io
 
   dockerId: brunoterkaly
   azureResourceGroup: rg-my-aks-cluster
   kubernetesCluster: my-aks-cluster
-  azureContainerRegistry: azureregistrykubernetes.azurecr.io
+  azureContainerRegistry: $registryName.azurecr.io
 
 #==================================================================
 # TRIGGERS

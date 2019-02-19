@@ -77,7 +77,7 @@ steps:
 # Package up the charts with Helm
 #==================================================================
 - bash: |
-    az login --service-principal -u $(registryLogin) -p $(registryPassword) -t $(tenantId)
+    az login --service-principal -u $(clusterLogin) -p $(clusterPassword) -t $(tenantId)
     az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
     az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
     export KUBECONFIG=/home/vsts/.kube/config

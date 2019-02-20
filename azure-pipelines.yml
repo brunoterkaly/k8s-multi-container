@@ -87,7 +87,7 @@ steps:
 # 
 #==================================================================
 - bash: |
-    echo "az acr helm list -n $(registryName)""
+    echo "az acr helm list -n $(registryName)"
     az acr helm list -n $(registryName)
     echo ""
   displayName: 'List registry'

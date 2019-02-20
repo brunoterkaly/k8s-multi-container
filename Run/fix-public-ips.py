@@ -17,6 +17,7 @@ def extract_line(s):
   #del s[-1]
   return s[3]
 
+# Loop through process output
 def skipLinesUntilToken(process, token):
     i = 0
     for line in process.stdout:
@@ -30,7 +31,7 @@ def getExternalIp():
     try:
        while True:
            last_read_good = 0
-           command = ['kubectl', 'get', 'svc']
+           command = ['kubectl', 'get', 'svc', '-n', 'dev']
            process = subprocess.Popen(command, stdout=subprocess.PIPE)
            s = skipLinesUntilToken(process,"web1")
            #print(s)

@@ -87,6 +87,7 @@ steps:
     LB=$(az network public-ip list | jq '.[0] | .name')
     echo $LB
     helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(chartDir)
+    az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
     az network public-ip delete --name $LB --resource-group $(azureResourceGroup)
     $(kubectl) delete svc  mysql --namespace dev
     $(kubectl) delete svc web --namespace dev

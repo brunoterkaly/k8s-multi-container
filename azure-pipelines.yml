@@ -91,12 +91,16 @@ steps:
     
     echo "helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(chartDir)"
     helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(chartDir)
+
+    echo "helm package --version latest --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(chartDir)"
+    helm package --version latest --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(chartDir)
     
     echo "az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz"
     az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
     
-    echo "helm upgrade RELEASE  $(build.buildId)" $(registryName)/$(chartPackageName) --namespace dev"
-    helm upgrade RELEASE-$(build.buildId) $(registryName)/$(chartPackageName) --namespace dev
+    echo "helm upgrade myrelease $(registryName)/$(chartPackageName)  --set=image.tag=latest"
+    helm upgrade myrelease $(registryName)/$(chartPackageName)  --set=image.tag=latest
+    
 
   displayName: 'helm Package'
 

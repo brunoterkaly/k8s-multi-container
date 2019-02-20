@@ -74,35 +74,55 @@ steps:
   displayName: 'docker push'
 
 #==================================================================
-# Package up the charts with Helm
+# 
 #==================================================================
 - bash: |
     az login --service-principal -u $(clusterLogin) -p $(clusterPassword) -t $(tenantId)
     az aks install-cli --install-location $(build.artifactStagingDirectory)/kubectl
     az aks get-credentials --resource-group $(azureResourceGroup) --name $(kubernetesCluster) --admin --verbose
     export KUBECONFIG=/home/vsts/.kube/config
+  displayName: 'setup kubectl'
 
+#==================================================================
+# 
+#==================================================================
+- bash: |
     echo "az acr helm list -n $(registryName)""
     az acr helm list -n $(registryName)
+    echo ""
+  displayName: 'List registry'
 
+#==================================================================
+# 
+#==================================================================
+- bash: |
     echo "az acr helm repo add -n  $(registryName)"
     az acr helm repo add -n  $(registryName)
+  displayName: 'Repo add'
 
-    
+#==================================================================
+# 
+#==================================================================
+- bash: |
     echo "helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(chartDir)"
     helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(chartDir)
+  displayName: 'helm package'
 
-    echo "helm package --version latest --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(chartDir)"
-    helm package --version latest --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(chartDir)
-    
+#==================================================================
+# 
+#==================================================================
+- bash: |
     echo "az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz"
     az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
-    
+  displayName: 'helm push'
+
+#==================================================================
+# 
+#==================================================================
+- bash: |
     echo "helm upgrade myrelease $(registryName)/$(chartPackageName)  --set=image.tag=latest"
     helm upgrade myrelease $(registryName)/$(chartPackageName)  --set=image.tag=latest
-    
-
-  displayName: 'helm Package'
+  displayName: 'helm upgrade'
 
 #    $(kubectl) delete svc  mysql --namespace dev
 #    $(kubectl) delete svc web --namespace dev

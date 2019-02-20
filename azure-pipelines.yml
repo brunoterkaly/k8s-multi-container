@@ -91,7 +91,8 @@ steps:
     az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
     az network public-ip delete --name $LB --resource-group $(azureResourceGroup)
     echo "helm install --namespace dev $(registryName)/$(chartPackageName)"
-    helm upgrade --namespace dev  --version $(build.buildId) $(registryName)/$(chartPackageName)
+    helm upgrade "RELEASE: $(build.buildId)" $(registryName)/$(chartPackageName) --namespace dev --version $(build.buildId)
+#   helm upgrade --namespace dev --version $(build.buildId) $(registryName)/$(chartPackageName)
 #    helm install --namespace dev $(registryName)/$(chartPackageName)
   displayName: 'helm Package'
 

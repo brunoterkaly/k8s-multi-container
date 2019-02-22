@@ -120,8 +120,8 @@ steps:
 # 
 #==================================================================
 - bash: |
-    echo "helm upgrade myrelease $(registryName)/$(chartPackageName)  --set=image.tag=latest"
-    helm install myrelease $(registryName)/$(chartPackageName)  --set=image.tag=latest
+    echo "helm install --namespace dev $(registryName)/$(chartPackageName)"
+    helm install --namespace dev $(registryName)/$(chartPackageName)
   displayName: 'helm upgrade'
 
 #    $(kubectl) delete svc  mysql --namespace dev

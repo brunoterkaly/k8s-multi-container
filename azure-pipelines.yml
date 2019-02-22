@@ -121,7 +121,7 @@ steps:
 #==================================================================
 - bash: |
     echo "helm install --namespace dev $(registryName)/$(chartPackageName)"
-    helm upgrade --install --namespace dev $(registryName)/$(chartPackageName)
+    helm upgrade --install NewRelease --namespace dev $(registryName)/$(chartPackageName)
 #    helm install --namespace dev $(registryName)/$(chartPackageName)
 
   displayName: 'helm upgrade'

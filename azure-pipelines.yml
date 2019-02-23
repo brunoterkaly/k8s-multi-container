@@ -121,15 +121,18 @@ steps:
 #==================================================================
 - bash: |
     echo "helm install --namespace dev $(registryName)/$(chartPackageName)"
-    helm upgrade --install btrelease --namespace dev $(registryName)/$(chartPackageName)
+    $(kubectl) delete svc  mysql --namespace dev
+    $(kubectl) delete svc web --namespace dev
+    $(kubectl) delete pod web1 --namespace dev
+    $(kubectl) delete pod mysql --namespace dev    
+    helm install --namespace dev $(registryName)/$(chartPackageName)
+
+#    helm upgrade --namespace dev $(registryName)/$(chartPackageName)
 #    helm install --namespace dev $(registryName)/$(chartPackageName)
 
   displayName: 'helm upgrade'
 
-#    $(kubectl) delete svc  mysql --namespace dev
-#    $(kubectl) delete svc web --namespace dev
-#    $(kubectl) delete pod web1 --namespace dev
-#    $(kubectl) delete pod mysql --namespace dev
+
 
 #==================================================================
 # Misc Commands

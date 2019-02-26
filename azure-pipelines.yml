@@ -123,8 +123,8 @@ steps:
     echo "az acr helm repo add -n  $(registryName)"
      az acr helm repo add -n  $(registryName)
 
-    echo "az acr helm delete $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz"
-    az acr helm delete -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
+    echo "az acr helm delete $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz --yes"
+    az acr helm delete -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz --yes
 
     echo "az acr helm push $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz"
     az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz

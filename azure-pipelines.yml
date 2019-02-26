@@ -134,8 +134,8 @@ steps:
     echo "helm inspect $(registryName)/$(chartPackageName)"
     helm inspect $(registryName)/$(chartPackageName)
 
-    echo "az acr helm show $(chartPackageName)"
-    az acr helm show $(chartPackageName)
+    echo "az acr helm show -n $(registryName)  $(chartPackageName)"
+    az acr helm show -n $(registryName)  $(chartPackageName) 
 
 #az acr helm push -n MyRegistry mychart-0.3.2.tgz
 

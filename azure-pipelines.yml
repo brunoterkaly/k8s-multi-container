@@ -54,7 +54,6 @@ steps:
     kubectlVersion: 1.13.0
     checkLatestKubectl: true
 
-
 #==================================================================
 # BUILD IMAGE
 #==================================================================
@@ -74,7 +73,7 @@ steps:
   displayName: 'docker push'
 
 #==================================================================
-# 
+#
 #==================================================================
 - bash: |
     az login --service-principal -u $(clusterLogin) -p $(clusterPassword) -t $(tenantId)
@@ -84,7 +83,7 @@ steps:
   displayName: 'setup kubectl'
 
 #==================================================================
-# 
+#
 #==================================================================
 - bash: |
     echo "az acr helm list -n $(registryName)"
@@ -93,7 +92,7 @@ steps:
   displayName: 'List registry'
 
 #==================================================================
-# 
+#
 #==================================================================
 - bash: |
     echo "az acr helm repo add -n  $(registryName)"
@@ -101,7 +100,7 @@ steps:
   displayName: 'Repo add'
 
 #==================================================================
-# 
+#
 #==================================================================
 - bash: |
     echo "helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/$(chartDir)"
@@ -109,7 +108,7 @@ steps:
   displayName: 'helm package'
 
 #==================================================================
-# 
+#
 #==================================================================
 - bash: |
     echo "az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz"
@@ -117,42 +116,38 @@ steps:
   displayName: 'helm push'
 
 #==================================================================
-# 
+#
 #==================================================================
 - bash: |
     echo "az acr helm repo add -n  $(registryName)"
      az acr helm repo add -n  $(registryName)
 
-    echo "az acr helm delete $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz --yes"
-    az acr helm delete -n $(registryName)  --yes
+    echo "az acr helm delete -n $(registryName)  $(chartPackageName) --yes"
+    az acr helm delete -n $(registryName)  $(chartPackageName) --yes"
+--yes
 
     echo "az acr helm push $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz"
     az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
-
 
     echo "az acr helm list"
     az acr helm list
 
     echo "helm inspect $(registryName)/$(chartPackageName)"
     helm inspect $(registryName)/$(chartPackageName)
-    
+
     echo "az acr helm show $(chartPackageName)"
     az acr helm show $(chartPackageName)
 #az acr helm push -n MyRegistry mychart-0.3.2.tgz
 
-
-
-
-
 #==================================================================
-# 
+#
 #==================================================================
 - bash: |
     echo "helm install --namespace dev $(registryName)/$(chartPackageName)"
     $(kubectl) delete svc  mysql --namespace dev
     $(kubectl) delete svc web --namespace dev
     $(kubectl) delete pod web1 --namespace dev
-    $(kubectl) delete pod mysql --namespace dev    
+    $(kubectl) delete pod mysql --namespace dev
     helm install --namespace dev $(registryName)/$(chartPackageName)
 
 #    helm upgrade --namespace dev $(registryName)/$(chartPackageName)
@@ -160,12 +155,9 @@ steps:
 
   displayName: 'helm upgrade'
 
-
-
 #==================================================================
 # Misc Commands
 #==================================================================
-
 
 - bash:
    echo "Default Working Directory"
@@ -226,7 +218,6 @@ steps:
 #    command: apply
 #    arguments: -f Deploy/web-svc-1.yml
 
-
 # Notes and commands
 # =========================================
 # Fired off
@@ -256,4 +247,3 @@ steps:
 # helm repo add/list/remove
 # helm upgrade
 # --------------------------------
-

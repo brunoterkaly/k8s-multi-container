@@ -221,3 +221,35 @@ steps:
 #    kubernetesCluster: $(kubernetesCluster)
 #    command: apply
 #    arguments: -f Deploy/web-svc-1.yml
+
+
+# Notes and commands
+# =========================================
+# Fired off
+# Continue to track all commands
+# Understand why not getting update
+# what the picture with acr (google images)
+# --------------------------------
+# az acr helm push -n MyRegistry mychart-0.3.2.tgz --force
+# az acr helm delete wordpress --version 2.1.10
+# az acr helm show -n MyRegistry mychart
+# az acr helm show -n MyRegistry mychart --version 0.3.2
+# az acr helm push wordpress-2.1.10.tgz
+# az acr helm list
+# helm inspect myacrhelm/wordpress
+# az acr helm show wordpress
+# --------------------------------
+# helm install testapi-0.1.0.tgz
+# helm ls
+# kubectl get deployments
+# helm delete ordered-quoll
+# helm upgrade ordered-quoll .
+# helm install helmet-chart-0.0.1.tgz --debug
+# helm repo add helmet http://192.168.99.100:31162/charts/
+# --------------------------------
+# helm init
+# helm list
+# helm repo add/list/remove
+# helm upgrade
+# --------------------------------
+

@@ -120,6 +120,28 @@ steps:
 # 
 #==================================================================
 - bash: |
+    echo "az acr helm repo add -n  $(registryName)"
+     az acr helm repo add -n  $(registryName)
+
+    echo "az acr helm push $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz"
+    az acr helm push $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
+
+    echo "az acr helm list"
+    az acr helm list
+    
+    echo "helm inspect $(registryName)/$(chartPackageName)"
+    helm inspect $(registryName)/$(chartPackageName)
+    
+    echo "az acr helm show $(chartPackageName)"
+    az acr helm show $(chartPackageName)
+
+
+
+
+#==================================================================
+# 
+#==================================================================
+- bash: |
     echo "helm install --namespace dev $(registryName)/$(chartPackageName)"
     $(kubectl) delete svc  mysql --namespace dev
     $(kubectl) delete svc web --namespace dev

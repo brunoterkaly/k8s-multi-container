@@ -124,7 +124,6 @@ steps:
 
     echo "az acr helm delete -n $(registryName)  $(chartPackageName) --yes"
     az acr helm delete -n $(registryName)  $(chartPackageName) --yes"
---yes
 
     echo "az acr helm push $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz"
     az acr helm push -n $(registryName) $(build.artifactStagingDirectory)/$(chartPackageName)-$(build.buildId).tgz
@@ -137,6 +136,7 @@ steps:
 
     echo "az acr helm show $(chartPackageName)"
     az acr helm show $(chartPackageName)
+
 #az acr helm push -n MyRegistry mychart-0.3.2.tgz
 
 #==================================================================

@@ -49,7 +49,7 @@ steps:
   displayName: Helm Installer
   inputs:
     helmVersion: 2.12.1
-    checkLatestHelmVersion: true
+    checkLatestHelmVersion: false
     installKubectl: true
     kubectlVersion: 1.13.0
     checkLatestKubectl: true

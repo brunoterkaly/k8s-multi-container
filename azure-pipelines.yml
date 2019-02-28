@@ -27,13 +27,9 @@ variables:
 # TRIGGERS
 #==================================================================
 trigger:
-  branches:
-    include:
-    - master
-    - features/*
-  paths:
-    include:
-    - k8s-multi-container
+- master
+- releases/*
+
 
 #==================================================================
 # STEPS SECTION

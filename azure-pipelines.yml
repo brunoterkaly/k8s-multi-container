@@ -48,7 +48,7 @@ steps:
 - task: HelmInstaller@0
   displayName: Helm Installer
   inputs:
-    helmVersion: 2.12.3
+    helmVersion: 2.13.0
     checkLatestHelmVersion: true
     installKubectl: true
     kubectlVersion: 1.13.0

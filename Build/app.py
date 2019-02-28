@@ -68,7 +68,7 @@ def get_courses(uid):
 
        returnval = ""
        if (R_SERVER.get(key)):
-           return "\n\nFrom Redis Cache:\n" + R_SERVER.get(key)
+           return "\n\nData from Redis Cache:\n" + R_SERVER.get(key)
        else:
            db = MySQLdb.connect("mysql","root","password")
            cursor = db.cursor()

@@ -69,7 +69,7 @@ steps:
   displayName: 'docker push'
 
 #==================================================================
-#
+# GET CREDENTIALS
 #==================================================================
 - bash: |
     az login --service-principal -u $(clusterLogin) -p $(clusterPassword) -t $(tenantId)
